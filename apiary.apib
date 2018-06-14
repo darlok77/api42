@@ -1,0 +1,148 @@
+FORMAT: 1A
+HOST: http://localhost:4000/user/
+
+# api42
+
+Documentation API CREATE - UPDATE - SEARCH - DELETE - SEARCH 
+
+## Create User [/create]
+
+### Create a user [POST]
+
++ Request (application/json)
+
+            {
+                "id":1,
+                "name": "cyril",
+                "age": 35,
+                "gender": "male"
+            }
+
++ Response 200 (application/json)
+
+    + Headers
+
+            Location: /create
+
+    + Body
+
+            {
+                "_id": "5b22dafe41b9e70b341baaa3",
+                "id": 1,
+                "name": "cyril",
+                "age": 35,
+                "gender": "male"
+            }
+            
+## Update User [/update/:id]
+            
+### Update a user [PUT]
+
++ Request (application/json)
+
+            {
+                "name": "cyrijjjl",
+                "age": 34,
+                "gender":"male"
+            }
+
++ Response 200 (application/json)
+
+    + Headers
+
+            Location: /update
+
+    + Body
+
+            {
+                "_id": "5b226652414f8708a8720d20",
+                "id": 1,
+                "name": "cyrijjjl",
+                "age": 34,
+                "gender": "male"
+            }
+
+
+## Show User [/show/:id]
+            
+### Show a user [GET]
+
++ Request (application/json)
+
++ Response 200 (application/json)
+
+    + Headers
+
+            Location: /show
+
+    + Body
+
+            {
+                "resp": [
+                    {
+                        {
+                          "_id": "5b226652414f8708a8720d20",
+                          "id": 1,
+                          "name": "cyrijjjl",
+                          "age": 34,
+                          "gender": "male"
+}
+                    }
+                ],
+                "code": 200,
+                "message": "Good request"
+            }
+            
+## Search User [/search/:word]
+            
+### Search a user [GET]
+
++ Request (application/json)
+
++ Response 200 (application/json)
+
+    + Headers
+
+            Location: /show
+
+    + Body
+
+            {
+                "data": [
+                          {
+                              "_id": "5b22dafb41b9e70b341baaa2",
+                              "id": 2,
+                              "name": "cyril",
+                              "age": 35,
+                              "gender": "male"
+                          },
+                          {
+                              "_id": "5b22dafe41b9e70b341baaa3",
+                              "id": 1,
+                              "name": "cyril",
+                              "age": 35,
+                              "gender": "male"
+                          }
+                ],
+                "code": 200,
+                "message": "Good request"
+            }
+            
+## Delete User [/destroy/:id]
+            
+### Delete a user [DELETE]
+
++ Request (application/json)
+
++ Response 200 (application/json)
+
+    + Headers
+
+            Location: /destroy
+
+    + Body
+
+            {
+                "code": 200,
+                "message": "Good request"
+            }

@@ -15,7 +15,9 @@ chai.use(chaiHttp);
 /**
  * GET /user
  */
-
+before(() => {
+  db.user.remove({})
+});
 describe('GET /user', () => {
   it('POST /create should create an user', done => {
     const payload = {
