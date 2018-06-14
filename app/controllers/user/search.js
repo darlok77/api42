@@ -40,24 +40,31 @@ module.exports = class Search {
    */
   middleware () {
     this.app.post('/user/search', validator.express(check), (req, res) => {
-      const ids = req.body.ids
-      
       try {
-        this.getModel(res).findOne({ids:[]}, function (err, user) { 
-          if (err) {
-            res.status(404).json({
-              code: 404,
-              message: 'User not found'
-            })
-          }
-          else{
-            res.status(200).json(user)
+        const result = {}
+        const ids = req.body.ids
+        
+       let userIds = []
+        let users = []
 
-            console.error(`[ERROR] user/create middleware() -> ${err}`)
-          }
-        });
+        console.log(ids)
+        this.getModel(res).find({
+          
+                  '_id': {$in: ids}
+               
+        }).exec().then(data => {
+          console.log(data)
+          res.status(200).json({
+            'data': data,
+            'code': 200,
+            'message': 'Good request'
+          })
+        })
+
+
+        
       } catch (e) {
-        console.error(`[ERROR] user/show/:id -> ${e}`)
+        console.error(`[ERROR] user/search -> ${e}`)
         res.status(400).json({
           'code': 400,
           'message': 'Bad request'
